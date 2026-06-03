@@ -4,29 +4,23 @@
    TOKENS
 ============================================================ */
 :root {
-  --gold:        #F5D54C;
-  --gold-light:  #FFEC6E;
-  --gold-dark:   #C9A800;
-  --navy:        #0e2431;
-  --navy-mid:    #152e3e;
-  --navy-light:  #1e3a4f;
-  --white:       #fefefe;
-  --grey-100:    #f4f6f8;
-  --grey-200:    #e2e8f0;
-  --grey-400:    #94a3b8;
-  --grey-600:    #64748b;
+  --gold:        #B8860B;
+  --gold-light:  #D4AF37;
+  --gold-dark:   #7A5C00;
 
-  --bg:          var(--white);
-  --bg-card:     #ffffff;
-  --bg-surface:  #f8fafc;
-  --text-main:   var(--navy);
-  --text-sub:    var(--grey-600);
-  --text-muted:  var(--grey-400);
-  --border:      var(--grey-200);
-  --shadow-sm:   0 1px 3px rgba(14,36,49,.06), 0 1px 2px rgba(14,36,49,.04);
-  --shadow-md:   0 4px 16px rgba(14,36,49,.08);
-  --shadow-lg:   0 12px 40px rgba(14,36,49,.12);
-  --shadow-gold: 0 0 24px rgba(245,213,76,.35);
+  --bg:          #FAF8F4;
+  --bg-card:     #FFFFFF;
+  --bg-surface:  #F2EDE4;
+
+  --text-main:   #1A1610;
+  --text-sub:    #6B6050;
+  --text-muted:  #9A8E7E;
+  --border:      #D8CEB8;
+
+  --shadow-sm:   0 1px 3px rgba(26,22,16,.06);
+  --shadow-md:   0 4px 16px rgba(26,22,16,.08);
+  --shadow-lg:   0 12px 40px rgba(26,22,16,.12);
+  --shadow-gold: 0 0 24px rgba(184,134,11,.25);
   --radius-sm:   8px;
   --radius-md:   14px;
   --radius-lg:   24px;
@@ -35,17 +29,26 @@
 }
 
 html.dark-mode {
-  --bg:          var(--navy);
-  --bg-card:     var(--navy-mid);
-  --bg-surface:  var(--navy-light);
-  --text-main:   #f1f5f9;
-  --text-sub:    #94a3b8;
-  --text-muted:  #64748b;
-  --border:      rgba(255,255,255,.08);
-  --shadow-sm:   0 1px 3px rgba(0,0,0,.25);
-  --shadow-md:   0 4px 16px rgba(0,0,0,.35);
-  --shadow-lg:   0 12px 40px rgba(0,0,0,.5);
+   --gold:        #D4AF37;
+  --gold-light:  #F0D060;
+  --gold-dark:   #A07D10;
+
+  --bg:          #0A0A0F;
+  --bg-card:     #111118;
+  --bg-surface:  #16161F;
+
+  --text-main:   #E8E0D0;
+  --text-sub:    #8A8070;
+  --text-muted:  #6A6058;
+  --border:      #3A3428;
+
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.4);
+  --shadow-md:   0 4px 16px rgba(0,0,0,.5);
+  --shadow-lg:   0 12px 40px rgba(0,0,0,.7);
+  --shadow-gold: 0 0 24px rgba(212,175,55,.3);
 }
+
+
 
 /* ============================================================
    RESET & BASE
@@ -82,9 +85,13 @@ img { max-width:100%; display:block; }
 /* ============================================================
    SCROLLBAR
 ============================================================ */
-::-webkit-scrollbar { width:6px; background:var(--border); }
-::-webkit-scrollbar-thumb { background:var(--grey-400); border-radius:99px; }
-::-webkit-scrollbar-thumb:hover { background:var(--grey-600); }
+html::-webkit-scrollbar { width:6px; background: #E8E0CC; }
+html::-webkit-scrollbar-thumb { background: #B8A878; border-radius:99px; }
+html::-webkit-scrollbar-thumb:hover { background: #A07D10; }
+
+html.dark-mode::-webkit-scrollbar { background: #16161F; }
+html.dark-mode::-webkit-scrollbar-thumb { background: #3A3428; border-radius:99px; }
+html.dark-mode::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
 
 /* ============================================================
    LOADING
