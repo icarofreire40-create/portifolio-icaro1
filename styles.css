@@ -31,8 +31,7 @@
 html.dark-mode {
     --gold:        #D4AF37;
   --gold-light:  #F0D060;
-  --gold-dark:   #A07D10;
-
+  --gold-dark:   #A07D10
   --bg:          #0A0A0F;
   --bg-card:     #111118;
   --bg-surface:  #16161F;
@@ -98,7 +97,7 @@ html.dark-mode::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
 ============================================================ */
 #loading {
   position:fixed; inset:0;
-  background:var(--navy);
+  background: #0A0A0F;
   display:flex; align-items:center; justify-content:center;
   z-index:999999;
   transition:opacity .6s ease, visibility .6s ease;
