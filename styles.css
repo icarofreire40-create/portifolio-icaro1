@@ -1308,3 +1308,176 @@ header {
         font-size: 1.6em;
     }
 }
+
+/*=======Skill Orbit Ball=======*/
+
+.skills-info.education-all {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+    gap: 20px;
+    margin-bottom: 80px;
+}
+
+.orbit-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orbit-wrapper {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Anel externo com glow */
+.orbit-ring-glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 2px solid var(--second-color);
+    box-shadow: 0 0 18px rgba(245, 213, 76, 0.5), 0 0 40px rgba(245, 213, 76, 0.2), inset 0 0 40px rgba(245, 213, 76, 0.05);
+    animation: orbitGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes orbitGlowPulse {
+    0%, 100% { box-shadow: 0 0 18px rgba(245, 213, 76, 0.5), 0 0 40px rgba(245, 213, 76, 0.2), inset 0 0 40px rgba(245, 213, 76, 0.05); }
+    50%       { box-shadow: 0 0 30px rgba(245, 213, 76, 0.8), 0 0 70px rgba(245, 213, 76, 0.35), inset 0 0 60px rgba(245, 213, 76, 0.1); }
+}
+
+/* Fundo escuro dentro do anel */
+.orbit-center-bg {
+    position: absolute;
+    width: 254px;
+    height: 254px;
+    border-radius: 50%;
+    background: var(--card-bg-color);
+    z-index: 1;
+}
+
+/* Ícone </> no centro */
+.orbit-center-icon {
+    position: absolute;
+    z-index: 2;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.4em;
+    font-weight: 800;
+    color: var(--second-color);
+    opacity: 0.18;
+    letter-spacing: -2px;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Container que gira */
+.orbit-rotate {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.orbit-rotate-1 { width: 220px; height: 220px; animation: spinOrbit 8s linear infinite; }
+.orbit-rotate-2 { width: 290px; height: 290px; animation: spinOrbit 12s linear infinite reverse; }
+.orbit-rotate-3 { width: 340px; height: 340px; animation: spinOrbit 16s linear infinite; }
+.orbit-rotate-4 { width: 400px; height: 400px; animation: spinOrbit 22s linear infinite reverse; }
+
+@keyframes spinOrbit {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Badge — igual ao floating-badge do código de referência */
+.orbit-chip {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg-color);
+    border: 1px solid rgba(245, 213, 76, 0.3);
+    border-radius: 14px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    cursor: default;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    min-width: 160px;
+}
+
+.orbit-chip:hover {
+    border-color: var(--second-color);
+    box-shadow: 0 5px 20px rgba(245, 213, 76, 0.25);
+    transform: translateX(-50%) scale(1.05);
+}
+
+.orbit-chip-icon {
+    font-size: 1.8em;
+    color: var(--second-color);
+    flex-shrink: 0;
+}
+
+.orbit-chip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.orbit-chip-title {
+    font-size: 0.82em;
+    font-weight: 700;
+    color: var(--first-color);
+    line-height: 1;
+}
+
+.orbit-chip-sub {
+    font-size: 0.68em;
+    color: var(--third-color);
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+/* Contra-rotação para o badge ficar sempre de pé */
+.orbit-rotate-1 .orbit-chip { animation: counterSpin 8s linear infinite reverse; }
+.orbit-rotate-2 .orbit-chip { animation: counterSpin 12s linear infinite; }
+.orbit-rotate-3 .orbit-chip { animation: counterSpin 16s linear infinite reverse; }
+.orbit-rotate-4 .orbit-chip { animation: counterSpin 22s linear infinite; }
+
+@keyframes counterSpin {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* Responsivo — abaixo de 900px volta a ser coluna */
+@media screen and (max-width: 1070px) {
+    .skills-info.education-all {
+        grid-template-columns: 1fr 1fr;
+    }
+    .orbit-section {
+        grid-column: 1 / -1;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .skills-info.education-all {
+        grid-template-columns: 1fr;
+    }
+    .orbit-wrapper   { width: 220px; height: 220px; }
+    .orbit-ring-glow { width: 200px; height: 200px; }
+    .orbit-center-bg { width: 196px; height: 196px; }
+    .orbit-rotate-1  { width: 170px; height: 170px; }
+    .orbit-rotate-2  { width: 230px; height: 230px; }
+    .orbit-rotate-3  { width: 270px; height: 270px; }
+    .orbit-rotate-4  { width: 310px; height: 310px; }
+    .orbit-chip      { min-width: 130px; padding: 8px 12px; gap: 8px; }
+    .orbit-chip-icon { font-size: 1.4em; }
+    .orbit-chip-title { font-size: 0.75em; }
+    .orbit-chip-sub   { font-size: 0.62em; }
+}
+
