@@ -7,7 +7,6 @@ const $mobileNav = document.getElementById('mobile-nav');
 /*======================
 DARK MODE (desktop toggle)
 ======================*/
-
 $checkbox.addEventListener('change', function () {
     if (this.checked) {
         $html.classList.add('dark-mode');
@@ -21,7 +20,6 @@ $checkbox.addEventListener('change', function () {
 /*======================
 DARK MODE (mobile toggle)
 ======================*/
-
 $checkboxMobile.addEventListener('change', function () {
     if (this.checked) {
         $html.classList.add('dark-mode');
@@ -35,16 +33,13 @@ $checkboxMobile.addEventListener('change', function () {
 /*======================
 HAMBURGER MENU
 ======================*/
-
 function toggleMobileNav() {
     $hamburger.classList.toggle('active');
     $mobileNav.classList.toggle('active');
-    // Prevent body scroll when menu open
     document.body.style.overflow = $mobileNav.classList.contains('active') ? 'hidden' : '';
 }
 
 $hamburger.addEventListener('click', toggleMobileNav);
-
 $hamburger.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -52,7 +47,6 @@ $hamburger.addEventListener('keydown', (e) => {
     }
 });
 
-// Close menu when a mobile nav link is clicked
 document.querySelectorAll('.mobile-link').forEach(link => {
     link.addEventListener('click', () => {
         $hamburger.classList.remove('active');
@@ -62,42 +56,68 @@ document.querySelectorAll('.mobile-link').forEach(link => {
 });
 
 /*======================
+CURSOR PERSONALIZADO
+======================*/
+const cursor = document.createElement('div');
+const cursorDot = document.createElement('div');
+cursor.id = 'cursor';
+cursorDot.id = 'cursor-dot';
+document.body.appendChild(cursor);
+document.body.appendChild(cursorDot);
+
+let cursorX = 0, cursorY = 0;
+let dotX = 0, dotY = 0;
+
+window.addEventListener('mousemove', (e) => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+    cursorDot.style.left = cursorX + 'px';
+    cursorDot.style.top  = cursorY + 'px';
+});
+
+function animateCursor() {
+    dotX += (cursorX - dotX) * 0.12;
+    dotY += (cursorY - dotY) * 0.12;
+    cursor.style.left = dotX + 'px';
+    cursor.style.top  = dotY + 'px';
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Aumenta cursor em elementos clicáveis
+document.querySelectorAll('a, button, .btn, .img-card, .stat-pill, .toggle').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+});
+
+// Esconde cursor ao sair da janela
+document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+    cursorDot.style.opacity = '0';
+});
+document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
+    cursorDot.style.opacity = '1';
+});
+
+/*======================
 NEURAL BACKGROUND
 ======================*/
-
 const canvas = document.getElementById("neural-canvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const mouse = {
-    x: undefined,
-    y: undefined,
-    radius: 120
-};
+const mouse = { x: undefined, y: undefined, radius: 120 };
 
-window.addEventListener("mousemove", (e) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
-});
-
-window.addEventListener("mouseleave", () => {
-    mouse.x = undefined;
-    mouse.y = undefined;
-});
-
-// Touch support for neural background
+window.addEventListener("mousemove", (e) => { mouse.x = e.x; mouse.y = e.y; });
+window.addEventListener("mouseleave", () => { mouse.x = undefined; mouse.y = undefined; });
 window.addEventListener("touchmove", (e) => {
     mouse.x = e.touches[0].clientX;
     mouse.y = e.touches[0].clientY;
 }, { passive: true });
-
-window.addEventListener("touchend", () => {
-    mouse.x = undefined;
-    mouse.y = undefined;
-});
-
+window.addEventListener("touchend", () => { mouse.x = undefined; mouse.y = undefined; });
 window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -106,25 +126,20 @@ window.addEventListener("resize", () => {
 
 class Particle {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        this.x = x; this.y = y;
         this.vx = (Math.random() - 0.5) * 0.4;
         this.vy = (Math.random() - 0.5) * 0.4;
         this.size = Math.random() * 1.5 + 1;
     }
-
     update() {
         this.x += this.vx;
         this.y += this.vy;
-
-        if (this.x <= 0 || this.x >= canvas.width) this.vx *= -1;
+        if (this.x <= 0 || this.x >= canvas.width)  this.vx *= -1;
         if (this.y <= 0 || this.y >= canvas.height) this.vy *= -1;
-
         if (mouse.x && mouse.y) {
             const dx = mouse.x - this.x;
             const dy = mouse.y - this.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
-
             if (distance < mouse.radius) {
                 const angle = Math.atan2(dy, dx);
                 const force = (mouse.radius - distance) / mouse.radius;
@@ -133,11 +148,10 @@ class Particle {
             }
         }
     }
-
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(245,213,76,0.8)";
+        ctx.fillStyle = "rgba(212,175,55,0.8)";
         ctx.fill();
     }
 }
@@ -146,18 +160,10 @@ const particles = [];
 
 function initParticles() {
     particles.length = 0;
-    // Fewer particles on mobile for performance
     const isMobile = window.innerWidth < 730;
-    const amount = Math.min(
-        Math.floor(window.innerWidth / (isMobile ? 20 : 14)),
-        isMobile ? 60 : 120
-    );
-
+    const amount = Math.min(Math.floor(window.innerWidth / (isMobile ? 20 : 14)), isMobile ? 60 : 120);
     for (let i = 0; i < amount; i++) {
-        particles.push(new Particle(
-            Math.random() * canvas.width,
-            Math.random() * canvas.height
-        ));
+        particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
     }
 }
 
@@ -167,10 +173,9 @@ function connectParticles() {
             const dx = particles[a].x - particles[b].x;
             const dy = particles[a].y - particles[b].y;
             const distance = dx * dx + dy * dy;
-
             if (distance < 8000) {
                 const opacity = 1 - distance / 8000;
-                ctx.strokeStyle = `rgba(245,213,76,${opacity})`;
+                ctx.strokeStyle = `rgba(212,175,55,${opacity})`;
                 ctx.lineWidth = 0.5;
                 ctx.beginPath();
                 ctx.moveTo(particles[a].x, particles[a].y);
@@ -183,12 +188,7 @@ function connectParticles() {
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (const particle of particles) {
-        particle.update();
-        particle.draw();
-    }
-
+    for (const particle of particles) { particle.update(); particle.draw(); }
     connectParticles();
     requestAnimationFrame(animate);
 }
@@ -199,41 +199,34 @@ animate();
 /*======================
 SCROLL ANIMATION (seções)
 ======================*/
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('show');
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.section').forEach(section => {
-    observer.observe(section);
-});
+document.querySelectorAll('.section').forEach(section => observer.observe(section));
 
 /*======================
-SCROLL REVEAL ESCALONADO (cards e itens)
+SCROLL REVEAL ESCALONADO
 ======================*/
-
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target); // anima só uma vez
+            revealObserver.unobserve(entry.target);
         }
     });
 }, { threshold: 0.15 });
 
 const revealTargets = document.querySelectorAll(
-    '.edu-list .item, .bar, .experience-card, .portfolio-list .img-card, .about-info, .about-img'
+    '.edu-list .item, .bar, .experience-card, .portfolio-list .img-card, .about-info, .about-img, .timeline-item'
 );
 revealTargets.forEach(el => revealObserver.observe(el));
 
 /*======================
 BARRA DE PROGRESSO DE SCROLL
 ======================*/
-
 const scrollBar = document.getElementById('scroll-progress');
 
 window.addEventListener('scroll', () => {
@@ -244,13 +237,72 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /*======================
-TYPED TEXT ANIMATION
+BOTÃO VOLTAR AO TOPO
 ======================*/
+const backToTop = document.createElement('button');
+backToTop.id = 'back-to-top';
+backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+backToTop.setAttribute('aria-label', 'Voltar ao topo');
+document.body.appendChild(backToTop);
 
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+}, { passive: true });
+
+backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/*======================
+CONTADOR ANIMADO NOS STATS
+======================*/
+function animateCounter(el, target, duration = 1800) {
+    let start = 0;
+    const isPlus = el.dataset.target.includes('+');
+    const isPercent = el.dataset.target.includes('%');
+    const startTime = performance.now();
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        start = Math.floor(eased * target);
+        el.textContent = start + (isPlus ? '+' : isPercent ? '%' : '');
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const raw = el.dataset.target.replace(/[^0-9]/g, '');
+            animateCounter(el, parseInt(raw));
+            statsObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-pill strong').forEach(el => {
+    const text = el.textContent.trim();
+    el.dataset.target = text;
+    el.textContent = '0';
+    statsObserver.observe(el);
+});
+
+/*======================
+TYPED TEXT ANIMATION — MELHORADO
+======================*/
 const textos = ['Desenvolvedor', 'Web Designer', 'Freelancer', 'Criador de Soluções'];
 let textoAtual = 0;
 let letra = 0;
 let deletando = false;
+let pausando = false;
 
 function tipar() {
     const elemento = document.querySelector('.home-container .info h3');
@@ -258,26 +310,34 @@ function tipar() {
 
     const texto = textos[textoAtual];
 
+    if (pausando) return;
+
     if (!deletando) {
-        elemento.textContent = texto.substring(0, letra + 1) + '|';
         letra++;
+        elemento.innerHTML = `${texto.substring(0, letra)}<span class="typed-cursor">|</span>`;
 
         if (letra === texto.length) {
-            deletando = true;
-            setTimeout(tipar, 1500);
+            pausando = true;
+            setTimeout(() => {
+                pausando = false;
+                deletando = true;
+                tipar();
+            }, 2000);
             return;
         }
     } else {
-        elemento.textContent = texto.substring(0, letra - 1) + '|';
         letra--;
+        elemento.innerHTML = `${texto.substring(0, letra)}<span class="typed-cursor">|</span>`;
 
         if (letra === 0) {
             deletando = false;
             textoAtual = (textoAtual + 1) % textos.length;
+            setTimeout(tipar, 400);
+            return;
         }
     }
 
-    setTimeout(tipar, deletando ? 60 : 120);
+    setTimeout(tipar, deletando ? 50 : 100);
 }
 
 tipar();
@@ -285,7 +345,6 @@ tipar();
 /*======================
 LOADING SCREEN
 ======================*/
-
 window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loading').classList.add('hide');
