@@ -229,3 +229,40 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.section').forEach(section => {
     observer.observe(section);
 });
+
+/*======================
+TIPAGEM ANIMADA
+======================*/
+
+const textos = ['Desenvolvedor', 'Web Designer', 'Freelancer'];
+let textoAtual = 0;
+let letra = 0;
+let deletando = false;
+
+function tipar() {
+    const elemento = document.querySelector('.home-container .info h3');
+    const texto = textos[textoAtual];
+
+    if (!deletando) {
+        elemento.textContent = texto.substring(0, letra + 1) + '|';
+        letra++;
+
+        if (letra === texto.length) {
+            deletando = true;
+            setTimeout(tipar, 1500);
+            return;
+        }
+    } else {
+        elemento.textContent = texto.substring(0, letra - 1) + '|';
+        letra--;
+
+        if (letra === 0) {
+            deletando = false;
+            textoAtual = (textoAtual + 1) % textos.length;
+        }
+    }
+
+    setTimeout(tipar, deletando ? 60 : 120);
+}
+
+tipar();
