@@ -826,3 +826,20 @@ header {
 @keyframes progress {
     to { width: 100%; }
 }
+
+/*=======Gradiente animado no título=======*/
+
+.home-container .info h2 {
+    background: linear-gradient(270deg, #B8860B, #FFD700, #FFEC6E, #FFA500, #FFD700, #B8860B);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradiente 6s ease infinite;
+}
+
+@keyframes gradiente {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
