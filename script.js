@@ -197,7 +197,7 @@ initParticles();
 animate();
 
 /*======================
-SCROLL ANIMATION
+SCROLL ANIMATION (seções)
 ======================*/
 
 const observer = new IntersectionObserver((entries) => {
@@ -211,6 +211,37 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.section').forEach(section => {
     observer.observe(section);
 });
+
+/*======================
+SCROLL REVEAL ESCALONADO (cards e itens)
+======================*/
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target); // anima só uma vez
+        }
+    });
+}, { threshold: 0.15 });
+
+const revealTargets = document.querySelectorAll(
+    '.edu-list .item, .bar, .experience-card, .portfolio-list .img-card, .about-info, .about-img'
+);
+revealTargets.forEach(el => revealObserver.observe(el));
+
+/*======================
+BARRA DE PROGRESSO DE SCROLL
+======================*/
+
+const scrollBar = document.getElementById('scroll-progress');
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    scrollBar.style.width = progress + '%';
+}, { passive: true });
 
 /*======================
 TYPED TEXT ANIMATION
