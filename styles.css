@@ -843,3 +843,52 @@ header {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
+/*=======Efeito Glitch=======*/
+
+.home-container .info h2 {
+    position: relative;
+}
+
+.home-container .info h2::before,
+.home-container .info h2::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--body-bg-color);
+}
+
+.home-container .info h2::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff0000;
+    animation: glitch1 3s infinite;
+    -webkit-text-fill-color: #ff0000;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+
+.home-container .info h2::after {
+    left: -2px;
+    text-shadow: 2px 0 #00ffff;
+    animation: glitch2 3s infinite;
+    -webkit-text-fill-color: #00ffff;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch1 {
+    0%, 90%, 100% { transform: translate(0); opacity: 0; }
+    92% { transform: translate(-3px, 1px); opacity: 1; }
+    94% { transform: translate(3px, -1px); opacity: 1; }
+    96% { transform: translate(-2px, 2px); opacity: 1; }
+    98% { transform: translate(2px, -2px); opacity: 1; }
+}
+
+@keyframes glitch2 {
+    0%, 90%, 100% { transform: translate(0); opacity: 0; }
+    92% { transform: translate(3px, -1px); opacity: 1; }
+    94% { transform: translate(-3px, 1px); opacity: 1; }
+    96% { transform: translate(2px, -2px); opacity: 1; }
+    98% { transform: translate(-2px, 2px); opacity: 1; }
+}
