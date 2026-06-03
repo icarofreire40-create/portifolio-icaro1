@@ -29,9 +29,9 @@
 }
 
 html.dark-mode {
-    --gold:        #D4AF37;
+  --gold:        #D4AF37;
   --gold-light:  #F0D060;
-  --gold-dark:   #A07D10
+  --gold-dark:   #A07D10;
   --bg:          #0A0A0F;
   --bg-card:     #111118;
   --bg-surface:  #16161F;
