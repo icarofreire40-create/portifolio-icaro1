@@ -266,3 +266,13 @@ function tipar() {
 }
 
 tipar();
+
+/*======================
+LOADING
+======================*/
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('loading').classList.add('hide');
+    }, 1800);
+});
