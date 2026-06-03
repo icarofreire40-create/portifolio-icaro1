@@ -242,8 +242,78 @@ header {
     transform: translateX(30px);
 }
 
+#switch-mobile:checked + .toggle::before {
+    transform: translateX(30px);
+}
+
 #switch:checked + .toggle {
-    background: #222;
+    background: #1a1a2e;
+    box-shadow: 0 0 12px rgba(100, 100, 255, 0.4);
+}
+
+#switch-mobile:checked + .toggle {
+    background: #1a1a2e;
+    box-shadow: 0 0 12px rgba(100, 100, 255, 0.4);
+}
+
+/* Ícone de sol e lua com transição */
+.toggle .sun,
+.toggle .moon {
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* Estado padrão: sol visível, lua oculta */
+.toggle .sun  { opacity: 1; transform: rotate(0deg) scale(1); }
+.toggle .moon { opacity: 0.4; transform: rotate(-20deg) scale(0.8); }
+
+/* Quando ativo: lua em destaque, sol apagado */
+#switch:checked + .toggle .sun,
+#switch-mobile:checked + .toggle .sun  { opacity: 0.4; transform: rotate(20deg) scale(0.8); }
+#switch:checked + .toggle .moon,
+#switch-mobile:checked + .toggle .moon { opacity: 1;   transform: rotate(0deg) scale(1); }
+
+/* Brilho animado no toggle ao hover */
+.toggle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+    border-radius: 30px;
+    transform: skewX(-15deg);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.toggle:hover::after {
+    opacity: 1;
+    animation: toggleShine 0.55s ease forwards;
+}
+
+@keyframes toggleShine {
+    0%   { left: -60%; }
+    100% { left: 120%; }
+}
+
+/* Pulso suave ao clicar */
+.toggle:active {
+    transform: translateY(2px) scale(0.95);
+}
+
+/* Glow no estado dark */
+#switch:checked + .toggle:hover,
+#switch-mobile:checked + .toggle:hover {
+    box-shadow: 0 0 18px rgba(100, 100, 255, 0.55);
+}
+
+/* Glow no estado light */
+#switch:not(:checked) + .toggle:hover,
+#switch-mobile:not(:checked) + .toggle:hover {
+    box-shadow: 0 0 18px rgba(245, 213, 76, 0.6);
 }
 
 /*=======Neural Background=======*/
@@ -978,15 +1048,16 @@ header {
 
     /* Home */
     .home-container {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
-        gap: 40px;
+        gap: 30px;
     }
 
+    /* Ordem: media-icons (1) → info texto (2) → imagem (3) */
     .home-container .media-icons {
+        order: 1;
         flex-direction: row;
         margin-right: 0;
-        margin-top: 20px;
         gap: 20px;
         justify-content: center;
     }
@@ -996,9 +1067,15 @@ header {
     }
 
     .home-container .info {
+        order: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    /* Imagem vem depois do parágrafo e botão */
+    .home-container .home-img {
+        order: 3;
     }
 
     .home-container .info p {
@@ -1006,9 +1083,12 @@ header {
     }
 
     .home-container .home-img img {
-        max-width: 280px;
-        width: 100%;
-    }
+    max-width: 220px;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
     .home-container .info h2 {
         font-size: 2.8em;
@@ -1149,9 +1229,13 @@ header {
         width: 160px;
     }
 
-    .home-container .home-img img {
-        max-width: 220px;
-    }
+.home-container .home-img img {
+    max-width: 170px;
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
     .edu-list .item:hover,
     .bar:hover,
