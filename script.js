@@ -247,7 +247,7 @@ window.addEventListener('scroll', () => {
 TYPED TEXT ANIMATION
 ======================*/
 
-const textos = ['Desenvolvedor', 'Web Designer', 'Freelancer'];
+const textos = ['Desenvolvedor', 'Web Designer', 'Freelancer', 'Criador de Soluções'];
 let textoAtual = 0;
 let letra = 0;
 let deletando = false;

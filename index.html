@@ -5,16 +5,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ícaro Freire — Dev Jr.</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <script src="https://kit.fontawesome.com/77b4ef7fc8.js" crossorigin="anonymous"></script>
-  <title>Ícaro Freire Dev Jr.</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 
 <body>
 
+  <!-- Scroll progress -->
   <div id="scroll-progress"></div>
 
+  <!-- Loading -->
   <div id="loading">
     <div class="loading-content">
       <h2>Ícaro Freire</h2>
@@ -24,45 +26,42 @@
     </div>
   </div>
 
+  <!-- Neural canvas -->
   <canvas id="neural-canvas"></canvas>
 
-  <!-- Header -->
+  <!-- ====== HEADER ====== -->
   <header>
     <div class="nav-bar">
-      <a href="#" class="logo">Ícaro Freire</a>
+      <a href="#home" class="logo">Ícaro <span>Freire</span></a>
 
-      <!-- Desktop navigation -->
       <div class="navigation">
-        <div class="nav-items">
-          <a href="#home">Home</a>
+        <nav class="nav-items">
+          <a href="#home" class="active">Home</a>
           <a href="#about">Sobre</a>
           <a href="#skills">Habilidades</a>
           <a href="#portfolio">Portifólio</a>
-          <a href="#contact">Contatos</a>
+          <a href="#contact">Contato</a>
           <input type="checkbox" id="switch">
           <label for="switch" class="toggle">
             <i class="fas fa-sun sun"></i>
             <i class="fas fa-moon moon"></i>
           </label>
-        </div>
+        </nav>
       </div>
 
-      <!-- Hamburger button (mobile) -->
-      <div class="hamburger" id="hamburger" aria-label="Abrir menu" role="button" tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Navigation Overlay -->
+  <!-- Mobile Nav -->
   <nav class="mobile-nav" id="mobile-nav">
     <a href="#home" class="mobile-link">Home</a>
     <a href="#about" class="mobile-link">Sobre</a>
     <a href="#skills" class="mobile-link">Habilidades</a>
     <a href="#portfolio" class="mobile-link">Portifólio</a>
-    <a href="#contact" class="mobile-link">Contatos</a>
+    <a href="#contact" class="mobile-link">Contato</a>
     <div class="mobile-toggle-wrapper">
       <input type="checkbox" id="switch-mobile">
       <label for="switch-mobile" class="toggle">
@@ -72,262 +71,261 @@
     </div>
   </nav>
 
-  <!-- Home -->
+  <!-- ====== HOME ====== -->
   <section class="home flex-center" id="home">
     <div class="home-container">
+
+      <!-- Social -->
       <div class="media-icons">
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="GitHub" aria-label="GitHub"> <i class="fab fa-github"></i></a>
       </div>
 
+      <!-- Text -->
       <div class="info">
+        <span class="info-tag">Desenvolvedor Web</span>
         <h2 data-text="Olá, sou Ícaro">Olá, sou Ícaro</h2>
-        <h3>Desenvolvedor <i class="fas fa-rocket"></i></h3>
+        <h3>Desenvolvedor|</h3>
         <p>
-          Eu sou Ícaro Freire, um desenvolvedor web júnior apaixonado por criar experiências digitais incríveis.
-          Com habilidades em HTML, CSS e JavaScript, estou sempre buscando aprender e crescer na área de
-          desenvolvimento web. Meu objetivo é transformar ideias em realidade através do código, criando sites
-          e aplicações que sejam funcionais, esteticamente agradáveis e fáceis de usar. Estou animado para
-          colaborar em projetos desafiadores e contribuir para o mundo da tecnologia com minha criatividade e dedicação.
+          Desenvolvedor web júnior apaixonado por criar experiências digitais incríveis.
+          Com habilidades em HTML, CSS e JavaScript, transformo ideias em realidade —
+          criando interfaces funcionais, bonitas e acessíveis.
         </p>
-        <a href="#" target="blank" class="btn">
-          Fale Comigo <i class="fas fa-arrow-circle-right"></i>
-        </a>
+        <div class="home-buttons">
+          <a href="#contact" class="btn btn-primary">Fale Comigo <i class="fas fa-arrow-right"></i></a>
+          <a href="#portfolio" class="btn btn-outline">Ver Projetos <i class="fas fa-code"></i></a>
+        </div>
       </div>
 
+      <!-- Photo -->
       <div class="home-img">
         <img src="img/Piture-of-Ícaro.jpeg" alt="Ícaro Freire" width="600" height="600">
       </div>
+
     </div>
 
     <a href="#about" class="scroll-down">
-      Deslize para baixo <i class="fas fa-arrow-down"></i>
+      Rolar para baixo <i class="fas fa-arrow-down"></i>
     </a>
   </section>
 
-  <!-- Sobre Section -->
+  <!-- ====== ABOUT ====== -->
   <section class="about section" id="about">
     <div class="container flex-center">
-      <h1 class="section-title-01">Sobre</h1>
-      <h2 class="section-title-02">Sobre</h2>
 
-      <div class="content flex-center">
-        <div class="about-img">
-          <img src="#" alt="">
+      <div class="about-grid">
+
+        <!-- Image -->
+        <div class="about-img-wrap about-img">
+          <img src="#" alt="Ícaro Freire">
         </div>
 
+        <!-- Text -->
         <div class="about-info">
-          <div class="description">
-            <h3>Eu me chamo Ícaro,</h3>
-            <h4>
-              Sou desenvolvedor junior, aprimorando cada dia mais meus conhecimentos
-            </h4>
+          <p class="section-label">Sobre Mim</p>
+          <h2 class="section-heading">Eu me chamo <em>Ícaro</em></h2>
+          <div class="divider"></div>
+
+          <div class="about-text">
+            <h3>Dev Junior</h3>
+            <h4>Aprimorando cada dia mais meus conhecimentos</h4>
             <p>
-              Minha principal área de atuação é o desenvolvimento web em diversas modalidades
-              para facilitar as atividades diárias de vários tipos de empresas.
+              Minha principal área de atuação é o desenvolvimento web em diversas modalidades,
+              criando soluções que facilitam as atividades diárias de vários tipos de empresas.
+              Apaixonado por código limpo e design cuidadoso.
             </p>
           </div>
 
-          <ul class="professional-list">
-            <li class="list-item">
-              <h3>2+</h3>
-              <span>Anos de experiência<br> em desenvolvimento web</span>
-            </li>
-          </ul>
+          <div class="about-stats">
+            <div class="stat-pill">
+              <strong>2+</strong>
+              <span>Anos de experiência</span>
+            </div>
+            <div class="stat-pill">
+              <strong>10+</strong>
+              <span>Projetos entregues</span>
+            </div>
+            <div class="stat-pill">
+              <strong>100%</strong>
+              <span>Dedicação</span>
+            </div>
+          </div>
 
-          <a href="#" class="btn">
+          <a href="#" class="btn btn-primary" style="margin-top:32px">
             Download CV <i class="fas fa-download"></i>
           </a>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Habilidades Section -->
+  <!-- ====== SKILLS ====== -->
   <section class="skills section" id="skills">
     <div class="container flex-center">
-      <h1 class="section-title-01">Habilidades</h1>
-      <h2 class="section-title-02">Habilidades</h2>
 
-      <div class="content">
-        <div class="skills-description">
-          <h3>Educação e Habilidades</h3>
-          <p>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl,
-            eget ultricies nunc nisl eget ultricies.
-          </p>
+      <p class="section-label">Competências</p>
+      <h2 class="section-heading">Educação &amp; <em>Habilidades</em></h2>
+      <div class="divider"></div>
+
+      <!-- 3-column grid: education | bars | orbit -->
+      <div class="skills-main-grid">
+
+        <!-- Educação -->
+        <div>
+          <span class="skills-col-title">Educação</span>
+          <ul class="edu-list">
+            <li class="item">
+              <span class="year">Em andamento</span>
+              <p><span>Curso Técnico em Desenvolvimento de Sistemas</span>Senai</p>
+            </li>
+            <li class="item">
+              <span class="year">2019 – 2022</span>
+              <p><span>lorem ipsum dolor sit amet</span>lorem ipsum</p>
+            </li>
+            <li class="item">
+              <span class="year">2019 – 2022</span>
+              <p><span>lorem ipsum dolor sit amet</span>lorem ipsum</p>
+            </li>
+          </ul>
         </div>
 
-        <div class="skills-info education-all">
-          <div class="education">
-            <h4><label>Educação</label></h4>
-            <ul class="edu-list">
-              <li class="item">
-                <span class="year">Em andamento</span>
-                <p><span>Curso técnico em desenvolvimento de sistemas</span> Senai</p>
-              </li>
-              <li class="item">
-                <span class="year">2019 - 2022</span>
-                <p><span>lorem ipsum dolor sit amet, consectetur adipiscing elit.</span> lorem ipsum dolor sit amet</p>
-              </li>
-              <li class="item">
-                <span class="year">2019 - 2022</span>
-                <p><span>lorem ipsum dolor sit amet, consectetur adipiscing elit.</span> lorem ipsum dolor sit amet</p>
-              </li>
-            </ul>
-          </div>
+        <!-- Habilidades -->
+        <div>
+          <span class="skills-col-title">Habilidades</span>
+          <ul class="bars">
+            <li class="bar">
+              <div class="info"><span>Lorem</span><span>70%</span></div>
+              <div class="line html"></div>
+            </li>
+            <li class="bar">
+              <div class="info"><span>Lorem</span><span>60%</span></div>
+              <div class="line css"></div>
+            </li>
+            <li class="bar">
+              <div class="info"><span>Lorem</span><span>40%</span></div>
+              <div class="line javascript"></div>
+            </li>
+            <li class="bar">
+              <div class="info"><span>Lorem</span><span>35%</span></div>
+              <div class="line python"></div>
+            </li>
+            <li class="bar">
+              <div class="info"><span>Lorem</span><span>35%</span></div>
+              <div class="line django"></div>
+            </li>
+          </ul>
+        </div>
 
-          <div class="education">
-            <h4><label>Habilidades</label></h4>
-            <ul class="bars">
-              <li class="bar">
-                <div class="info"><span>Lorem</span><span>80%</span></div>
-                <div class="line html"></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Lorem</span><span>80%</span></div>
-                <div class="line html"></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Lorem</span><span>80%</span></div>
-                <div class="line html"></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Lorem</span><span>80%</span></div>
-                <div class="line html"></div>
-              </li>
-              <li class="bar">
-                <div class="info"><span>Lorem</span><span>80%</span></div>
-                <div class="line html"></div>
-              </li>
-            </ul>
-          </div>
+        <!-- Orbit -->
+        <div class="orbit-col">
+          <div class="orbit-wrapper">
+            <div class="orbit-ring-glow"></div>
+            <div class="orbit-center-bg"></div>
+            <div class="orbit-center-icon">&lt;/&gt;</div>
 
-          <div class="skills-info education-all">
-
-            <div class="education">
-              <!-- seu bloco de Educação existente -->
+            <div class="orbit-rotate orbit-rotate-1">
+              <div class="orbit-chip">
+                <i class="fab fa-html5 orbit-chip-icon"></i>
+                <div class="orbit-chip-content">
+                  <span class="orbit-chip-title">HTML</span>
+                  <span class="orbit-chip-sub">Semântico, SEO</span>
+                </div>
+              </div>
             </div>
 
-            <div class="education">
-              <!-- seu bloco de Habilidades (barras) existente -->
+            <div class="orbit-rotate orbit-rotate-2">
+              <div class="orbit-chip">
+                <i class="fab fa-css3-alt orbit-chip-icon"></i>
+                <div class="orbit-chip-content">
+                  <span class="orbit-chip-title">CSS</span>
+                  <span class="orbit-chip-sub">Flexbox, Grid, Animações</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Terceira coluna: órbita -->
-            <div class="orbit-section">
-              <div class="orbit-wrapper">
-
-                <div class="orbit-ring-glow"></div>
-                <div class="orbit-center-bg"></div>
-                <div class="orbit-center-icon">&lt;/&gt;</div>
-
-                <div class="orbit-rotate orbit-rotate-1">
-                  <div class="orbit-chip">
-                    <i class="fab fa-html5 orbit-chip-icon"></i>
-                    <div class="orbit-chip-content">
-                      <span class="orbit-chip-title">HTML</span>
-                      <span class="orbit-chip-sub">Semântico, SEO</span>
-                    </div>
-                  </div>
+            <div class="orbit-rotate orbit-rotate-3">
+              <div class="orbit-chip">
+                <i class="fab fa-js orbit-chip-icon"></i>
+                <div class="orbit-chip-content">
+                  <span class="orbit-chip-title">TypeScript</span>
+                  <span class="orbit-chip-sub">ES6+, Tipagem</span>
                 </div>
+              </div>
+            </div>
 
-                <div class="orbit-rotate orbit-rotate-2">
-                  <div class="orbit-chip">
-                    <i class="fab fa-css3-alt orbit-chip-icon"></i>
-                    <div class="orbit-chip-content">
-                      <span class="orbit-chip-title">CSS</span>
-                      <span class="orbit-chip-sub">Flexbox, Grid, Animações</span>
-                    </div>
-                  </div>
+            <div class="orbit-rotate orbit-rotate-4">
+              <div class="orbit-chip">
+                <i class="fab fa-react orbit-chip-icon"></i>
+                <div class="orbit-chip-content">
+                  <span class="orbit-chip-title">React</span>
+                  <span class="orbit-chip-sub">Hooks, Router, Redux</span>
                 </div>
-
-                <div class="orbit-rotate orbit-rotate-3">
-                  <div class="orbit-chip">
-                    <i class="fab fa-js orbit-chip-icon"></i>
-                    <div class="orbit-chip-content">
-                      <span class="orbit-chip-title">TypeScript</span>
-                      <span class="orbit-chip-sub">ES6+, Tipagem</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="orbit-rotate orbit-rotate-4">
-                  <div class="orbit-chip">
-                    <i class="fab fa-react orbit-chip-icon"></i>
-                    <div class="orbit-chip-content">
-                      <span class="orbit-chip-title">React</span>
-                      <span class="orbit-chip-sub">Hooks, Router, Redux</span>
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </div>
 
           </div>
-
         </div>
 
+      </div><!-- /skills-main-grid -->
 
+      <!-- Experience -->
+      <p class="section-label" style="margin-top:16px">Experiência</p>
+      <h3 class="section-heading" style="font-size:1.6rem; margin-bottom:24px">Trabalhos &amp; <em>Experiências</em></h3>
 
-        <div class="skills-description">
-          <h3>Trabalhos e Experiências</h3>
+      <div class="exp-grid">
+        <div class="experience-card">
+          <div class="upper">
+            <h3>lorem ipsum dolor sit amet</h3>
+            <h5>2022 – 2025</h5>
+            <span>Tempo integral</span>
+          </div>
+          <div class="hr"></div>
+          <h4><label>Empresa lorem ipsum</label></h4>
+          <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor nisl eget ultricies tincidunt.</p>
         </div>
 
-        <div class="skills-info">
-          <div class="experience-card">
-            <div class="upper">
-              <h3>lorem ipsum dolor sit amet</h3>
-              <h5>2022 - 2025</h5>
-              <span>Tempo integral</span>
-            </div>
-            <div class="hr"></div>
-            <h4><label>Empresa lorem ipsum</label></h4>
-            <p>lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="experience-card">
+          <div class="upper">
+            <h3>lorem ipsum dolor sit amet</h3>
+            <h5>2020 – 2022</h5>
+            <span>Tempo integral</span>
           </div>
-
-          <div class="experience-card">
-            <div class="upper">
-              <h3>lorem ipsum dolor sit amet</h3>
-              <h5>2022 - 2025</h5>
-              <span>Tempo integral</span>
-            </div>
-            <div class="hr"></div>
-            <h4><label>Empresa lorem ipsum</label></h4>
-            <p>lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </div>
+          <div class="hr"></div>
+          <h4><label>Empresa lorem ipsum</label></h4>
+          <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor nisl eget ultricies tincidunt.</p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Portfolio Section -->
+  <!-- ====== PORTFOLIO ====== -->
   <section class="portfolio section" id="portfolio">
     <div class="container flex-center">
-      <h1 class="section-title-01">Meu Portfolio</h1>
-      <h2 class="section-title-02">Meu Portfolio</h2>
 
-      <div class="content">
-        <div class="portfolio-list">
-          <div class="img-card-container">
-            <div class="img-card">
-              <div class="overlay"></div>
-              <div class="info">
-                <h3>Web Design</h3>
-                <span>Videira Anápolis</span>
-              </div>
-              <img src="img/videira.jpg" alt="Videira Anápolis">
+      <p class="section-label">Trabalhos</p>
+      <h2 class="section-heading">Meu <em>Portifólio</em></h2>
+      <div class="divider"></div>
+
+      <div class="portfolio-list">
+        <div class="img-card-container">
+          <div class="img-card">
+            <div class="overlay"></div>
+            <div class="info">
+              <h3>Web Design</h3>
+              <span>Videira Anápolis</span>
             </div>
+            <img src="img/videira.jpg" alt="Videira Anápolis">
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
   <script src="./script.js"></script>
-
 </body>
 
 </html>
