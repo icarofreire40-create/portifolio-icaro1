@@ -530,7 +530,11 @@ header {
   gap:64px; align-items:center;
 }
 
-.about-img-wrap { position:relative; }
+.about-img-wrap img {
+  width:100%; max-width:420px;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+}
 
 .about-img-wrap img {
   width:100%; max-width:420px;
