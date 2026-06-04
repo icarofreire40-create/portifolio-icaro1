@@ -1224,3 +1224,179 @@ header {
 
 /* Remove o grid antigo de experiência */
 .exp-grid { display: none; }
+
+/* ============================================================
+   ABOUT TERMINAL
+============================================================ */
+ 
+/* Container posicionado como a imagem original */
+.about-terminal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+/* Brilho dourado decorativo (fica atrás da janela) */
+.abt-glow {
+  position: absolute;
+  width: 80%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(212,175,55,.18) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  animation: abtGlowPulse 4s ease-in-out infinite;
+}
+ 
+@keyframes abtGlowPulse {
+  0%, 100% { opacity: .6; transform: translate(-50%, -50%) scale(1);   }
+  50%       { opacity: 1;  transform: translate(-50%, -50%) scale(1.08); }
+}
+ 
+/* Janela do terminal */
+.abt-window {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  background: #0d1117;
+  border-radius: var(--radius-md);
+  border: 1px solid #30363d;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(212,175,55,.12);
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+ 
+  /* Entrada suave */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease .2s, transform .6s ease .2s;
+}
+ 
+/* Ativa quando a seção entra na viewport (classe .visible adicionada pelo JS existente) */
+.about-terminal.visible .abt-window {
+  opacity: 1;
+  transform: translateY(0);
+}
+ 
+/* ---- Barra de título ---- */
+.abt-bar {
+  background: #161b22;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #21262d;
+  user-select: none;
+}
+ 
+.abt-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.abt-red    { background: #ff5f57; }
+.abt-yellow { background: #febc2e; }
+.abt-green  { background: #28c840; }
+ 
+.abt-title {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  color: #8b949e;
+  letter-spacing: .4px;
+}
+ 
+.abt-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212,175,55,.1);
+  border: 1px solid rgba(212,175,55,.25);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+ 
+/* ---- Corpo do terminal ---- */
+.abt-body {
+  padding: 20px 22px 28px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+ 
+/* Cada linha */
+.abt-line {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #e6edf3;
+  white-space: pre-wrap;
+  word-break: break-word;
+  opacity: 0;
+  animation: abtFadeIn .25s ease forwards;
+}
+ 
+@keyframes abtFadeIn {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+ 
+/* Prompt verde */
+.abt-prompt { color: #57ab5a; }
+ 
+/* Comando em azul */
+.abt-cmd    { color: #79c0ff; }
+ 
+/* Chaves JSON em laranja */
+.abt-key    { color: #ffa657; }
+ 
+/* Valores em azul-claro */
+.abt-val    { color: #a5d6ff; }
+ 
+/* Ouro para destaques */
+.abt-gold   { color: var(--gold); }
+ 
+/* Linha em branco entre blocos */
+.abt-blank  { display: block; height: 4px; }
+ 
+/* Cursor piscante */
+.abt-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--gold);
+  border-radius: 1px;
+  vertical-align: -2px;
+  margin-left: 1px;
+  animation: abtBlink .8s step-end infinite;
+}
+ 
+@keyframes abtBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+ 
+/* ---- Linha de comando (prompt + texto digitado) ---- */
+.abt-line-cmd {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+ 
+/* ---- Responsividade ---- */
+@media (max-width: 900px) {
+  .abt-window { max-width: 100%; }
+}
+ 
+@media (max-width: 730px) {
+  .abt-body { padding: 16px 16px 22px; }
+  .abt-line { font-size: 12px; }
+}
+ 

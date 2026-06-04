@@ -350,3 +350,157 @@ window.addEventListener('load', () => {
         document.getElementById('loading').classList.add('hide');
     }, 1800);
 });
+
+/* ============================================================
+   ABOUT TERMINAL — Animação de digitação
+============================================================ */
+ 
+(function () {
+ 
+  /* ----------------------------------------------------------
+     1. DADOS — edite aqui suas informações reais
+  ---------------------------------------------------------- */
+  const TERMINAL_LINES = [
+    { type: 'cmd',    text: 'whoami' },
+    { type: 'output', html: '<span class="abt-gold">Ícaro Freire</span> — Dev Web Jr.' },
+    { type: 'blank' },
+ 
+    { type: 'cmd',    text: 'cat sobre.json' },
+    { type: 'output', html: '{' },
+    { type: 'output', html: '  <span class="abt-key">"localização"</span>: <span class="abt-val">"Goiânia, GO"</span>,' },
+    { type: 'output', html: '  <span class="abt-key">"foco"</span>: <span class="abt-val">"Fullstack & Web Design"</span>,' },
+    { type: 'output', html: '  <span class="abt-key">"experiência"</span>: <span class="abt-val">"2+ anos"</span>,' },
+    { type: 'output', html: '  <span class="abt-key">"projetos"</span>: <span class="abt-val">10+</span>,' },
+    { type: 'output', html: '  <span class="abt-key">"dedicação"</span>: <span class="abt-val">"100%"</span>' },
+    { type: 'output', html: '}' },
+    { type: 'blank' },
+ 
+    { type: 'cmd',    text: 'ls habilidades/' },
+    { type: 'output', html: '<span class="abt-val">HTML</span>  <span class="abt-val">CSS</span>  <span class="abt-val">TypeScript</span>  <span class="abt-val">React</span>  <span class="abt-val"></span>' },
+    { type: 'blank' },
+ 
+    { type: 'cmd',    text: 'echo $STATUS' },
+    { type: 'output', html: '🟢 <span class="abt-gold">Disponível para novos projetos</span>' },
+    { type: 'blank' },
+  ];
+ 
+  /* ----------------------------------------------------------
+     2. VELOCIDADES (ms)
+  ---------------------------------------------------------- */
+  const SPEED_TYPE   = 55;   // ms por caractere ao digitar
+  const DELAY_AFTER_CMD    = 160;  // pausa após terminar de digitar comando
+  const DELAY_AFTER_OUTPUT = 35;   // pausa entre linhas de output
+  const DELAY_BLANK        = 120;  // pausa para linha em branco
+  const DELAY_START        = 600;  // espera antes de começar
+ 
+  /* ----------------------------------------------------------
+     3. HELPERS
+  ---------------------------------------------------------- */
+  const body = document.getElementById('abt-body');
+  if (!body) return; // segurança caso o elemento não exista
+ 
+  function appendLine(html, extraClass) {
+    const el = document.createElement('div');
+    el.className = 'abt-line' + (extraClass ? ' ' + extraClass : '');
+    el.innerHTML = html;
+    body.appendChild(el);
+    return el;
+  }
+ 
+  function appendBlank() {
+    const el = document.createElement('div');
+    el.className = 'abt-blank';
+    body.appendChild(el);
+  }
+ 
+  /* Cursor piscante permanente no fim */
+  function appendCursor() {
+    const el = document.createElement('div');
+    el.className = 'abt-line';
+    el.style.opacity = '1';
+    el.innerHTML = '<span class="abt-prompt">❯ </span><span class="abt-cursor"></span>';
+    body.appendChild(el);
+  }
+ 
+  /* Digita um comando caractere por caractere */
+  function typeCommand(text, callback) {
+    const el = document.createElement('div');
+    el.className = 'abt-line abt-line-cmd';
+    el.style.opacity = '1'; // visível desde o início (cursor aparece)
+    el.innerHTML = '<span class="abt-prompt">❯ </span><span class="abt-cmd"></span>';
+    body.appendChild(el);
+ 
+    const cmdSpan = el.querySelector('.abt-cmd');
+    let i = 0;
+ 
+    function tick() {
+      i++;
+      const slice = text.slice(0, i);
+      const isLast = i >= text.length;
+      cmdSpan.innerHTML = slice + (isLast ? '' : '<span class="abt-cursor"></span>');
+      if (!isLast) {
+        setTimeout(tick, SPEED_TYPE + (Math.random() * 20 - 10)); // leve variação humana
+      } else {
+        setTimeout(callback, DELAY_AFTER_CMD);
+      }
+    }
+ 
+    setTimeout(tick, 80);
+  }
+ 
+  /* ----------------------------------------------------------
+     4. LOOP PRINCIPAL
+  ---------------------------------------------------------- */
+  let idx = 0;
+ 
+  function runNext() {
+    if (idx >= TERMINAL_LINES.length) {
+      appendCursor();
+      return;
+    }
+ 
+    const line = TERMINAL_LINES[idx++];
+ 
+    if (line.type === 'blank') {
+      appendBlank();
+      setTimeout(runNext, DELAY_BLANK);
+      return;
+    }
+ 
+    if (line.type === 'cmd') {
+      typeCommand(line.text, runNext);
+      return;
+    }
+ 
+    if (line.type === 'output') {
+      appendLine(line.html);
+      setTimeout(runNext, DELAY_AFTER_OUTPUT);
+      return;
+    }
+  }
+ 
+  /* ----------------------------------------------------------
+     5. DISPARA APENAS QUANDO A SEÇÃO ENTRAR NA VIEWPORT
+        (usa o mesmo IntersectionObserver do restante do site)
+  ---------------------------------------------------------- */
+  let started = false;
+ 
+  const terminalObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !started) {
+        started = true;
+        terminalObserver.disconnect();
+        setTimeout(runNext, DELAY_START);
+      }
+    });
+  }, { threshold: 0.3 });
+ 
+  const terminalWrapper = document.querySelector('.about-terminal');
+  if (terminalWrapper) {
+    terminalObserver.observe(terminalWrapper);
+    /* Também registra no revealObserver já existente no site
+       para ganhar a classe .visible e acionar a animação CSS */
+    revealObserver.observe(terminalWrapper);
+  }
+ 
+})();
