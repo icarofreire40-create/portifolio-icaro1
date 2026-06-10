@@ -376,7 +376,7 @@ window.addEventListener('load', () => {
     { type: 'blank' },
  
     { type: 'cmd',    text: 'ls habilidades/' },
-    { type: 'output', html: '<span class="abt-val">HTML</span>  <span class="abt-val">CSS</span>  <span class="abt-val">TypeScript</span>  <span class="abt-val">React</span>  <span class="abt-val"></span>' },
+    { type: 'output', html: '<span class="abt-val">HTML</span>  <span class="abt-val">CSS</span> <span class="abt-val">UX/UI Design</span>  <span class="abt-val">TypeScript</span>  <span class="abt-val">React</span>  <span class="abt-val"></span>' },
     { type: 'blank' },
  
     { type: 'cmd',    text: 'echo $STATUS' },
