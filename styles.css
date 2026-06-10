@@ -682,9 +682,9 @@ header {
 }
 .bar.visible .line.html::before    { width:70%; }
 .bar.visible .line.css::before     { width:60%; }
-.bar.visible .line.javascript::before { width:40%; }
-.bar.visible .line.python::before  { width:35%; }
-.bar.visible .line.django::before  { width:35%; }
+.bar.visible .line.Ux-Ui-Desing::before { width:40%; }
+.bar.visible .line.Typescript::before  { width:35%; }
+.bar.visible .line.Python::before  { width:35%; }
 
 /* Experience cards */
 .exp-grid {
